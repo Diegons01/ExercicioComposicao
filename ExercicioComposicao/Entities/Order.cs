@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Globalization;
 using ExercicioComposicao.Entities.Enums;
 using System.Collections.Generic;
 
@@ -10,7 +11,7 @@ namespace ExercicioComposicao.Entities
         public DateTime Moment { get; set; }
         public OrderStatus Status { get; set; }
         public Client Client { get; set; }
-        public List<OrderItem> OrderItens { get; set; } = new List<OrderItem>();
+        public List<OrderItem> items { get; set; } = new List<OrderItem>();
 
         public Order()
         {
@@ -25,12 +26,12 @@ namespace ExercicioComposicao.Entities
 
         public void AddItem(OrderItem orderItem)
         {
-            OrderItens.Add(orderItem);
+            items.Add(orderItem);
         }
 
         public void RemoveItem(OrderItem orderItem)
         {
-            OrderItens.Remove(orderItem);
+            items.Remove(orderItem);
         }
 
         public override string ToString()
@@ -41,13 +42,17 @@ namespace ExercicioComposicao.Entities
             sb.AppendLine(Moment.ToString());
             sb.Append("Order Status: ");
             sb.AppendLine(Status.ToString());
-            sb.Append(Client);
+            sb.Append("Clint: ");
+            sb.AppendLine(Client.ToString());
             sb.AppendLine("Order items: ");
-
-            foreach (OrderItem item in OrderItens)
+            double sum = 0.0;
+            foreach (OrderItem item in items)
             {
-
+                sb.AppendLine(item.ToString());
+                sum += item.SubTotal();
             }
+            sb.Append("Total Price: $");
+            sb.Append(sum.ToString("F2", CultureInfo.InvariantCulture));
 
             return sb.ToString();
         }

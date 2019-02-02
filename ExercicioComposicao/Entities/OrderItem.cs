@@ -1,4 +1,6 @@
-﻿namespace ExercicioComposicao.Entities
+﻿using System.Globalization;
+
+namespace ExercicioComposicao.Entities
 {
     class OrderItem
     {
@@ -24,7 +26,7 @@
 
         public override string ToString()
         {
-            return Product.ToString() + ", Quantity: " + Quantity + ", SubTotal: " + SubTotal();
+            return Product.ToString() + ", Quantity: " + Quantity + ", SubTotal: $" + SubTotal().ToString("F2", CultureInfo.InvariantCulture);
         }
     }
 }

@@ -22,13 +22,12 @@ namespace ExercicioComposicao
 
             Console.WriteLine("Enter order data:");
             Console.Write("Status: ");
-            string status = Console.ReadLine();
-            OrderStatus orderStatus = Enum.Parse<OrderStatus>(status);
+            OrderStatus orderStatus = Enum.Parse<OrderStatus>(Console.ReadLine());
+            //Pedido
+            Order order = new Order(DateTime.Now, orderStatus, client);
 
             Console.Write("How many items to this order? ");
-            int n = int.Parse(Console.ReadLine());
-
-            Order order = new Order(DateTime.Now, orderStatus, client);
+            int n = int.Parse(Console.ReadLine());            
 
             for (int i = 0; i < n; i++)
             {
@@ -40,7 +39,9 @@ namespace ExercicioComposicao
                 Console.Write("Quantity: ");
                 int quantity = int.Parse(Console.ReadLine());
 
+                //Produto
                 Product product = new Product(nameProduct, productPrice);
+                //Pedido Item
                 OrderItem orderItem = new OrderItem(quantity, productPrice, product);
 
                 order.AddItem(orderItem);

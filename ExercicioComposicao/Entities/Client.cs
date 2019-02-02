@@ -23,7 +23,7 @@ namespace ExercicioComposicao.Entities
 
         public override string ToString()
         {
-            return Name + " - " + Date + " - " + Email;
+            return Name + " - " + Date.ToString("dd/MM/yyyy")  + " - " + Email;
         }
     }
 }
